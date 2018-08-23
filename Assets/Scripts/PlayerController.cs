@@ -17,6 +17,7 @@ public class PlayerController: MonoBehaviour
     Rigidbody rb;
 
     Vector3 touchInicio;
+    Vector3 v = new Vector3(0,3,0); //checkpoint
 
     [Tooltip("Indica o contato com o chão (Automático)")]
     [SerializeField]
@@ -55,22 +56,19 @@ public class PlayerController: MonoBehaviour
         var direcaoVertical = 0.0f;
 
         //#if UNITY_STANDALONE
+
         /* Teclado */
         direcaoHorizontal = Input.GetAxis("Horizontal");
         direcaoVertical = Input.GetAxis("Vertical");
+        Vector3 camera_frontDir = Camera.main.transform.forward;
+        Vector3 camera_sideDir = Camera.main.transform.right;
 
         /* Mouse */
         if (Input.GetMouseButton(0))
-        {
-            //var pos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-            //if(pos.x < 0.5)
-            //{
-            //direcaoHorizontal = -1;
-            //} else
-            //{
-            //direcaoHorizontal = 1;
-            //}
+        {           
+            rb.transform.position = v;
+            rb.isKinematic = true;
+            Invoke("Restart", 0.1f);
 
             touchObject(Input.mousePosition);
         }
@@ -98,16 +96,22 @@ public class PlayerController: MonoBehaviour
                 {
                     direcaoHorizontal = 1;
                 }
-
-                //Verify if a swipe occurs
-                //SwipeTeleport(t);
             }
         }
         //#endif
 
-        float constante = 20;
-        Vector3 velocidade = new Vector3(velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * direcaoVertical);
-        rb.AddForce(velocidade * Time.deltaTime * constante);
+        if (onGround == true){
+            float constante = 20f;
+
+            camera_frontDir.Normalize();
+            camera_sideDir.Normalize();
+ 
+            camera_frontDir = new Vector3(camera_frontDir.x * velocidadeRolamento * direcaoVertical, 0, velocidadeRolamento * direcaoVertical * camera_frontDir.z);
+            camera_sideDir = new Vector3(camera_sideDir.x * velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * camera_sideDir.z * direcaoHorizontal);
+ 
+            rb.AddForce(camera_frontDir * Time.deltaTime * constante);
+            rb.AddForce(camera_sideDir * Time.deltaTime * constante);
+        }
 
         if (Input.GetKeyDown("space") && onGround == true){
             rb.AddForce(0, 300, 0);
@@ -115,14 +119,12 @@ public class PlayerController: MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
-
         //checks to make sure the collision we collided with is the ground.
         //You will need to tag the terrain as ground
-        if (other.gameObject.tag == "ground")
+        if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Checkpoint")
         {
-            print("we are on the ground");
             onGround = true;
         }
     }
@@ -131,57 +133,22 @@ public class PlayerController: MonoBehaviour
     {
 
         //checks to make sure the collision we are no longer colliding with is the ground
-        if (otherExit.gameObject.tag == "ground")
+        if (otherExit.gameObject.tag == "Ground")
         {
-            print("we are off the ground");
             onGround = false;
         }
 
     }
 
-    /// <summary>
-    /// Método para tratar o Swipe
-    /// </summary>
-    /// <param name="t"></param>
-    void SwipeTeleport(Touch t)
+    public void Checkpoint()
     {
-        //Verify if this is the swipe start point
-        if (t.phase == TouchPhase.Began)
-        {
-            touchInicio = t.position;
-        }
-        else if (t.phase == TouchPhase.Ended)
-        {
-            Vector3 touchFim = t.position;
-            Vector3 dir;
+        v = transform.position;
+        v = new Vector3(v.x, v.y + 3, v.z);
+    }
 
-            float dif = touchFim.x - touchInicio.x;
-
-            if (Mathf.Abs(dif) >= minDisSwipe)
-            {
-
-                if (dif < 0)
-                {
-                    dir = Vector3.left;
-                }
-                else
-                {
-                    dir = Vector3.right;
-                }
-
-                RaycastHit hit;
-                if (!rb.SweepTest(dir, out hit, swipeMove))
-                {
-                    rb.MovePosition(rb.position + (dir * swipeMove));
-                }
-
-            }
-            else
-            {
-                return;
-            }
-        }
-
+    private void Restart()
+    {
+        rb.isKinematic = false;
     }
 
     static void touchObject(Vector3 posicaoClick)
