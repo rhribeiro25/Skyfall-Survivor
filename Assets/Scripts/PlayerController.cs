@@ -37,6 +37,17 @@ public class PlayerController: MonoBehaviour
     [SerializeField]
     float swipeMove = 2.0f;
 
+
+    public void setVelocidadeRolamento(float velocidade)
+    {
+        this.velocidadeRolamento = velocidade;
+    }
+
+    public float getVelocidadeRolamento()
+    {
+        return this.velocidadeRolamento;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -143,7 +154,7 @@ public class PlayerController: MonoBehaviour
     public void Checkpoint()
     {
         v = transform.position;
-        v = new Vector3(v.x, v.y + 3, v.z);
+        v = new Vector3(v.x, v.y + 1, v.z);
     }
 
     private void Restart()
