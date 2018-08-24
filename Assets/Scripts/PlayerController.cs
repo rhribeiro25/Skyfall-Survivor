@@ -159,11 +159,12 @@ public class PlayerController: MonoBehaviour
 
         if (Physics.Raycast(cliqueRay, out hit))
         {
-            //if (hit.transform.GetComponent<Obsctacle>())
-            //{
-            //    hit.transform.SendMessage("ObjetoTocado", SendMessageOptions.DontRequireReceiver);
-            //    Destroy(hit.transform.gameObject);
-            //}
+            if (hit.transform.gameObject.tag == "Bridge")
+            {
+                hit.rigidbody.isKinematic = false;
+               //hit.transform.SendMessage("ObjetoTocado", SendMessageOptions.DontRequireReceiver);
+               //Destroy(hit.transform.gameObject);
+            }
         }
     }
 }
