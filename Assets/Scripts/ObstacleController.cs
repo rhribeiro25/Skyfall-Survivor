@@ -5,20 +5,29 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour {
 
     [Tooltip("Velocidade do deslocamento")]
-    [Range(0.01f,2f)]
+    [Range(0.001f,0.5f)]
     [SerializeField]
     public float speed = 0.1f;
+
+    [Tooltip("Delay entre as inversões de movimento")]
+    [Range(0, 5)]
+    [SerializeField]
+    public float delay = 0.3f;
 
     [Tooltip("Eixo de deslocamento 1=X, 2=Y e 3=Z")]
     [Range(1, 3)]
     [SerializeField]
     public int axis = 1;
 
+    private float speed_backup; //Guarda a velocidade para que seja restaurada
+
     void OnTriggerExit(Collider other)
     {
         if(other.tag == "Ground")
         {
-            speed *= -1;
+            speed_backup = speed;
+            speed = 0;
+            Invoke("revert", delay);
         }
     }
 
@@ -36,6 +45,12 @@ public class ObstacleController : MonoBehaviour {
         else if (axis == 3) v.z += speed;
 
         transform.position = v;
+    }
+
+    void revert()
+    {
+        speed = speed_backup;
+        speed *= -1;
     }
 
 }

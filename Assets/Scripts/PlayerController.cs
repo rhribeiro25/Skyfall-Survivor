@@ -77,10 +77,6 @@ public class PlayerController: MonoBehaviour
         /* Mouse */
         if (Input.GetMouseButton(0))
         {           
-            rb.transform.position = v;
-            rb.isKinematic = true;
-            Invoke("Restart", 0.1f);
-
             touchObject(Input.mousePosition);
         }
 
@@ -111,21 +107,28 @@ public class PlayerController: MonoBehaviour
         }
         //#endif
 
-        if (onGround == true){
+        camera_frontDir.Normalize();
+        camera_sideDir.Normalize();
+
+        camera_frontDir = new Vector3(camera_frontDir.x * velocidadeRolamento * direcaoVertical, 0, velocidadeRolamento * direcaoVertical * camera_frontDir.z);
+        camera_sideDir = new Vector3(camera_sideDir.x * velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * camera_sideDir.z * direcaoHorizontal);
+
+
+        if (onGround == true){ //No chão, o movimento ocorre normalmente
             float constante = 20f;
 
-            camera_frontDir.Normalize();
-            camera_sideDir.Normalize();
- 
-            camera_frontDir = new Vector3(camera_frontDir.x * velocidadeRolamento * direcaoVertical, 0, velocidadeRolamento * direcaoVertical * camera_frontDir.z);
-            camera_sideDir = new Vector3(camera_sideDir.x * velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * camera_sideDir.z * direcaoHorizontal);
- 
             rb.AddForce(camera_frontDir * Time.deltaTime * constante);
             rb.AddForce(camera_sideDir * Time.deltaTime * constante);
-        }
 
-        if (Input.GetKeyDown("space") && onGround == true){
-            rb.AddForce(0, 300, 0);
+            if (Input.GetKeyDown("space")) {
+                rb.AddForce(0, 300, 0);
+            }
+        }
+        else{ //No ar, o movimento é complicado, portanto torna-se reduzido
+            float constante = 10f;
+
+            rb.AddForce(camera_frontDir * Time.deltaTime * constante);
+            rb.AddForce(camera_sideDir * Time.deltaTime * constante);
         }
 
     }
@@ -147,6 +150,12 @@ public class PlayerController: MonoBehaviour
         if (otherExit.gameObject.tag == "Ground")
         {
             onGround = false;
+        }
+        if(otherExit.gameObject.tag == "GameOver")
+        {
+            rb.transform.position = v;
+            rb.isKinematic = true;
+            Invoke("Restart", 0.1f);
         }
 
     }
@@ -174,7 +183,7 @@ public class PlayerController: MonoBehaviour
             {
                 hit.rigidbody.isKinematic = false;
                //hit.transform.SendMessage("ObjetoTocado", SendMessageOptions.DontRequireReceiver);
-               //Destroy(hit.transform.gameObject);
+               //Destroy(hit.transform.gameObject); //Destroi outro objeto
             }
         }
     }
