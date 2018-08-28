@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 60291729}
   - component: {fileID: 60291728}
   m_Layer: 0
-  m_Name: thin5
+  m_Name: Thin5
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,7 @@ Transform:
   m_LocalScale: {x: 1.3882866, y: 1, z: 0.0313025}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &168167930
 GameObject:
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 168167932}
   - component: {fileID: 168167931}
   m_Layer: 0
-  m_Name: plane8 (2)
+  m_Name: Plane19
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ Transform:
   m_LocalScale: {x: 0.25060397, y: 1, z: 0.077}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &170076733
 GameObject:
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 183516335}
   - component: {fileID: 183516334}
   m_Layer: 0
-  m_Name: plane6
+  m_Name: Plane6
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -477,7 +477,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.46767312}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &282840810
 GameObject:
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 436366521}
   - component: {fileID: 436366520}
   m_Layer: 0
-  m_Name: plane4
+  m_Name: Plane4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -689,12 +689,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 436366519}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.54, y: -2.51, z: 18.6}
-  m_LocalScale: {x: 0.25, y: 1, z: 0.5}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 10.540001, y: -2.51, z: 18.6}
+  m_LocalScale: {x: 0.25000012, y: 1, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &518383743
 GameObject:
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 518383745}
   - component: {fileID: 518383744}
   m_Layer: 0
-  m_Name: ramp2
+  m_Name: Ramp2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -794,7 +794,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5046}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: -30, y: 90, z: 0}
 --- !u!1 &572175401
 GameObject:
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 572175403}
   - component: {fileID: 572175402}
   m_Layer: 0
-  m_Name: plane12
+  m_Name: Plane12
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,7 +894,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &640505415
 Prefab:
@@ -933,11 +933,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815326922614846, guid: 9ede3f67bb6b036419a5a0926c738988, type: 2}
       propertyPath: m_RootOrder
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1333019383002812, guid: 9ede3f67bb6b036419a5a0926c738988, type: 2}
       propertyPath: m_Name
-      value: Checkpoint2 (1)
+      value: Checkpoint1
       objectReference: {fileID: 0}
     - target: {fileID: 198518778152807318, guid: 9ede3f67bb6b036419a5a0926c738988,
         type: 2}
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 757897977}
   - component: {fileID: 757897976}
   m_Layer: 0
-  m_Name: plane15 (1)
+  m_Name: Plane21
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,7 +1120,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &775727343
 GameObject:
@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 775727345}
   - component: {fileID: 775727344}
   m_Layer: 0
-  m_Name: plane3
+  m_Name: Plane3
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1220,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &833280779
 GameObject:
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 833280781}
   - component: {fileID: 833280780}
   m_Layer: 0
-  m_Name: thin4
+  m_Name: Thin4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1320,7 +1320,7 @@ Transform:
   m_LocalScale: {x: 1.051, y: 1, z: 0.040200002}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &909100810
 GameObject:
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 909100812}
   - component: {fileID: 909100811}
   m_Layer: 0
-  m_Name: plane10
+  m_Name: Plane10
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1420,7 +1420,7 @@ Transform:
   m_LocalScale: {x: 0.083886005, y: 1, z: 0.787405}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &923995116
 GameObject:
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 923995118}
   - component: {fileID: 923995117}
   m_Layer: 0
-  m_Name: plane5
+  m_Name: Plane5
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1520,7 +1520,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &955596795
 GameObject:
@@ -1535,7 +1535,7 @@ GameObject:
   - component: {fileID: 955596797}
   - component: {fileID: 955596796}
   m_Layer: 0
-  m_Name: plane1
+  m_Name: Plane1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1635,7 +1635,7 @@ GameObject:
   - component: {fileID: 997434076}
   - component: {fileID: 997434075}
   m_Layer: 0
-  m_Name: plane8
+  m_Name: Plane8
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1720,7 +1720,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.077}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1037203195
 GameObject:
@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 1037203197}
   - component: {fileID: 1037203196}
   m_Layer: 0
-  m_Name: plane2
+  m_Name: Plane2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1820,7 +1820,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1055787950
 GameObject:
@@ -1835,7 +1835,7 @@ GameObject:
   - component: {fileID: 1055787952}
   - component: {fileID: 1055787951}
   m_Layer: 0
-  m_Name: ramp2 (1)
+  m_Name: Ramp3
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1920,7 +1920,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5039319}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: -30, y: 90, z: 0}
 --- !u!1001 &1080787330
 Prefab:
@@ -1959,7 +1959,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815326922614846, guid: 9ede3f67bb6b036419a5a0926c738988, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 1333019383002812, guid: 9ede3f67bb6b036419a5a0926c738988, type: 2}
       propertyPath: m_Name
@@ -2061,7 +2061,7 @@ GameObject:
   - component: {fileID: 1144196243}
   - component: {fileID: 1144196242}
   m_Layer: 0
-  m_Name: thin3
+  m_Name: Thin3
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2146,7 +2146,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 1, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1175491786
 GameObject:
@@ -2161,7 +2161,7 @@ GameObject:
   - component: {fileID: 1175491788}
   - component: {fileID: 1175491787}
   m_Layer: 0
-  m_Name: plane14
+  m_Name: Plane14
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,7 +2246,7 @@ Transform:
   m_LocalScale: {x: 0.1135, y: 1, z: 0.791367}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1212775995
 GameObject:
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 1212775997}
   - component: {fileID: 1212775996}
   m_Layer: 0
-  m_Name: plane12 (1)
+  m_Name: Plane20
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2346,7 +2346,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1329048590
 GameObject:
@@ -2361,7 +2361,7 @@ GameObject:
   - component: {fileID: 1329048592}
   - component: {fileID: 1329048591}
   m_Layer: 0
-  m_Name: thin1
+  m_Name: Thin1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,7 +2446,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1333042273
 GameObject:
@@ -2461,7 +2461,7 @@ GameObject:
   - component: {fileID: 1333042275}
   - component: {fileID: 1333042274}
   m_Layer: 0
-  m_Name: plane7
+  m_Name: Plane7
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2546,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.3612}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1486553379
 GameObject:
@@ -2561,7 +2561,7 @@ GameObject:
   - component: {fileID: 1486553381}
   - component: {fileID: 1486553380}
   m_Layer: 0
-  m_Name: ramp2 (2)
+  m_Name: Ramp4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2646,7 +2646,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: -30, y: 90, z: 0}
 --- !u!1 &1525038054
 GameObject:
@@ -2661,7 +2661,7 @@ GameObject:
   - component: {fileID: 1525038056}
   - component: {fileID: 1525038055}
   m_Layer: 0
-  m_Name: plane15
+  m_Name: Plane15
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2746,7 +2746,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1568538184
 GameObject:
@@ -2761,7 +2761,7 @@ GameObject:
   - component: {fileID: 1568538186}
   - component: {fileID: 1568538185}
   m_Layer: 0
-  m_Name: plane11
+  m_Name: Plane11
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2846,7 +2846,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1574151186
 GameObject:
@@ -2861,7 +2861,7 @@ GameObject:
   - component: {fileID: 1574151188}
   - component: {fileID: 1574151187}
   m_Layer: 0
-  m_Name: plane9
+  m_Name: Plane9
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2946,7 +2946,7 @@ Transform:
   m_LocalScale: {x: 0.50051665, y: 1, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1659407709
 GameObject:
@@ -2961,7 +2961,7 @@ GameObject:
   - component: {fileID: 1659407711}
   - component: {fileID: 1659407710}
   m_Layer: 0
-  m_Name: plane8 (1)
+  m_Name: Plane16
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3046,7 +3046,7 @@ Transform:
   m_LocalScale: {x: 0.25060397, y: 1, z: 0.077}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1741720675
 GameObject:
@@ -3061,7 +3061,7 @@ GameObject:
   - component: {fileID: 1741720677}
   - component: {fileID: 1741720676}
   m_Layer: 0
-  m_Name: plane9 (1)
+  m_Name: Plane17
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3146,7 +3146,7 @@ Transform:
   m_LocalScale: {x: 0.52273154, y: 1, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1804214619
 GameObject:
@@ -3161,7 +3161,7 @@ GameObject:
   - component: {fileID: 1804214621}
   - component: {fileID: 1804214620}
   m_Layer: 0
-  m_Name: thin7
+  m_Name: Thin7
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3246,7 +3246,7 @@ Transform:
   m_LocalScale: {x: 1.047, y: 1, z: 0.0661692}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1960555457
 GameObject:
@@ -3261,7 +3261,7 @@ GameObject:
   - component: {fileID: 1960555459}
   - component: {fileID: 1960555458}
   m_Layer: 0
-  m_Name: thin6
+  m_Name: Thin6
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3346,7 +3346,7 @@ Transform:
   m_LocalScale: {x: 0.55305, y: 1, z: 0.012165974}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1969314552
 GameObject:
@@ -3479,7 +3479,7 @@ GameObject:
   - component: {fileID: 2046123429}
   - component: {fileID: 2046123428}
   m_Layer: 0
-  m_Name: plane13
+  m_Name: Plane13
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3564,7 +3564,7 @@ Transform:
   m_LocalScale: {x: 0.1135, y: 1, z: 1.0322399}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2067153313
 GameObject:
@@ -3579,7 +3579,7 @@ GameObject:
   - component: {fileID: 2067153315}
   - component: {fileID: 2067153314}
   m_Layer: 0
-  m_Name: thin2
+  m_Name: Thin2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3664,7 +3664,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 1, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2095230300
 GameObject:
@@ -3779,7 +3779,7 @@ GameObject:
   - component: {fileID: 2105762334}
   - component: {fileID: 2105762333}
   m_Layer: 0
-  m_Name: plane9 (2)
+  m_Name: Plane18
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3864,7 +3864,7 @@ Transform:
   m_LocalScale: {x: 0.54, y: 1, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2130737653
 GameObject:
@@ -3879,7 +3879,7 @@ GameObject:
   - component: {fileID: 2130737655}
   - component: {fileID: 2130737654}
   m_Layer: 0
-  m_Name: ramp1
+  m_Name: Ramp1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3964,5 +3964,5 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 30, y: 90, z: 0}
