@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 4378
+  controlID: 5555
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 0
-  controlID: 4329
+  controlID: 5556
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,8 +141,8 @@ MonoBehaviour:
     y: 0
     width: 284
     height: 976
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 5}
   m_Panes:
   - {fileID: 5}
@@ -175,9 +175,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7a390000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 36f9feff1efbfeff5cfcfeff86fdfeff2002ffff98ceffffacceffffc4ceffff68e9ffff00000000
+    m_SelectedIDs: 46c0feff
+    m_LastClickedID: -81850
+    m_ExpandedIDs: 14d6feff36f9feff1efbfeff5cfcfeff86fdfeff2002ffff98ceffffacceffffc4ceffff68e9ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 4330
+  controlID: 5557
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -286,9 +286,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.8394203, y: -1.702393, z: 11.441454}
+    m_Target: {x: 2.6941252, y: 4.1632233, z: 1.9252754}
     speed: 2
-    m_Value: {x: 7.8394203, y: -1.702393, z: 11.441454}
+    m_Value: {x: 2.6941252, y: 4.1632233, z: 1.9252754}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -316,9 +316,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.3444931, y: 0.22114527, z: -0.08385538, w: -0.9085084}
+    m_Target: {x: -0.20642482, y: -0.5406586, z: 0.13887963, w: -0.8036103}
     speed: 2
-    m_Value: {x: -0.3444931, y: 0.22114527, z: -0.08385539, w: -0.9085085}
+    m_Value: {x: 0.20642482, y: 0.5406586, z: -0.13887961, w: 0.8036103}
   m_Size:
     m_Target: 7.1921835
     speed: 2
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -51586
+  m_LastSelectedObjectID: -81850
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -473,8 +473,8 @@ MonoBehaviour:
     y: 559
     width: 1247
     height: 417
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 234, y: 271}
+  m_MaxSize: {x: 10004, y: 10021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -517,19 +517,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: P:\Projetos Unity\Skyfall Survivor
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 185}
-    m_SelectedIDs: 78380000
-    m_LastClickedID: 14456
+    m_SelectedIDs: 24380000
+    m_LastClickedID: 14372
     m_ExpandedIDs: 000000008a370000e038000036390000403900007c3900000a3a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -583,8 +583,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 7a390000
-    m_LastClickedInstanceID: 14714
+    m_SelectedInstanceIDs: 46c0feff
+    m_LastClickedInstanceID: -81850
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000052cff4fff43400001e53ecff00000000
     m_RenameOverlay:
