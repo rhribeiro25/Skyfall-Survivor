@@ -29,13 +29,13 @@ public class ObstacleController : MonoBehaviour {
 
     void Update()
     {
-        Vector3 v = transform.parent.position;
+        Vector3 v = transform.position;
 
         if (axis == 1) v.x += speed;
         else if (axis == 2) v.y += speed;
         else if (axis == 3) v.z += speed;
 
-        transform.parent.position = v;
+        transform.position = v;
     }
 
 }

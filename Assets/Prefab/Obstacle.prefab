@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4603508689740230}
   - component: {fileID: 65099114341373634}
-  - component: {fileID: 114724670948290280}
   m_Layer: 0
   m_Name: LimitCollider
   m_TagString: Untagged
@@ -40,6 +39,7 @@ GameObject:
   - component: {fileID: 23570012074050300}
   - component: {fileID: 65628836132332370}
   - component: {fileID: 54634565555045672}
+  - component: {fileID: 114086039987037426}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883638933837174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.734463, y: -3.3779993, z: 55.403587}
+  m_LocalPosition: {x: 14.569951, y: -3.5, z: 55.421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4603508689740230}
@@ -138,7 +138,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1458333428755024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -150,20 +150,21 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883638933837174}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114724670948290280
+--- !u!114 &114086039987037426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1458333428755024}
+  m_GameObject: {fileID: 1883638933837174}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 596bfead1fc612341b2e07855e8716b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.2
+  axis: 1
