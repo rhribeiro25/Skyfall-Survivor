@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Bridge
   - GameOver
+  - TheEnd
   layers:
   - Default
   - TransparentFX

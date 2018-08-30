@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController: MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerController: MonoBehaviour
 
     Vector3 touchInicio;
     Vector3 v = new Vector3(0,3,0); //checkpoint
+    Canvas canvas;
 
     [Tooltip("Indica o contato com o chão (Automático)")]
     [SerializeField]
@@ -51,6 +53,7 @@ public class PlayerController: MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -135,9 +138,17 @@ public class PlayerController: MonoBehaviour
     {
         //checks to make sure the collision we collided with is the ground.
         //You will need to tag the terrain as ground
-        if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Checkpoint")
+        if (other.gameObject.tag == "Ground")
         {
             onGround = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "TheEnd")
+        {
+            canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
         }
     }
 
@@ -184,5 +195,13 @@ public class PlayerController: MonoBehaviour
                //Destroy(hit.transform.gameObject); //Destroi outro objeto
             }
         }
+    }
+
+    /// <summary>
+    /// Metodo para carregar uma scene
+    /// </summary>
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
