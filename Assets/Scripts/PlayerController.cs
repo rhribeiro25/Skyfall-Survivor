@@ -57,12 +57,10 @@ public class PlayerController: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //if (MenuPause.onPause)
-        //{
-        //    return;
-        //}
-
+        //Se o jogo estiver pausado nao faça nada
+        if (PauseMenu.pause)
+            return;
+        
         var direcaoHorizontal = 0.0f;
         var direcaoVertical = 0.0f;
 

@@ -64,9 +64,13 @@
     <Compile Include="Assets\Scripts\BoostController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CheckpointController.cs" />
+    <Compile Include="Assets\Scripts\LevelControle.cs" />
     <Compile Include="Assets\Scripts\MouseOrbit.cs" />
+    <Compile Include="Assets\Scripts\MusicaControle.cs" />
     <Compile Include="Assets\Scripts\ObstacleController.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/renan.ribeiro/Desktop/ProjectDM117/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
