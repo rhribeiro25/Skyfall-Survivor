@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+#if UNITY_ADS
+using UnityEngine.Advertisements;
+#endif
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController: MonoBehaviour
@@ -95,10 +98,7 @@ public class PlayerController: MonoBehaviour
 
         if (currentLife == 0)
         {
-            Camera.main.GetComponent<AudioSource>().Stop();
-            if(!audio.isPlaying) audio.PlayOneShot(loseSound);
-            Time.timeScale = 0;
-            canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
+            GameOver();            
         }
         var direcaoHorizontal = 0.0f;
         var direcaoVertical = 0.0f;
@@ -150,7 +150,6 @@ public class PlayerController: MonoBehaviour
         camera_frontDir = new Vector3(camera_frontDir.x * velocidadeRolamento * direcaoVertical, 0, velocidadeRolamento * direcaoVertical * camera_frontDir.z);
         camera_sideDir = new Vector3(camera_sideDir.x * velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * camera_sideDir.z * direcaoHorizontal);
 
-
         if (onGround == true){ //No chão, o movimento ocorre normalmente
             float constante = 20f;
 
@@ -185,10 +184,7 @@ public class PlayerController: MonoBehaviour
     {
         if (other.gameObject.tag == "TheEnd")
         {
-            audio.PlayOneShot(winSound);
-            Time.timeScale = 0;
-            rb.isKinematic = true;
-            canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
+            YouWin();
         }
     }
 
@@ -259,5 +255,32 @@ public class PlayerController: MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void ShowAds()
+    {
+    #if UNITY_ADS
+                if (UnityAdControle.showAds)
+                {
+                    UnityAdControle.ShowAd();
+                }
+    #endif
+    }
+
+    void GameOver()
+    {
+        Camera.main.GetComponent<AudioSource>().Stop();
+        if (!audio.isPlaying)
+            audio.PlayOneShot(loseSound);
+        PauseMenu.pause = true;
+        canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
+    }
+
+    void YouWin()
+    {
+        audio.PlayOneShot(winSound);
+        PauseMenu.pause = true;
+        rb.isKinematic = true;
+        canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
     }
 }
