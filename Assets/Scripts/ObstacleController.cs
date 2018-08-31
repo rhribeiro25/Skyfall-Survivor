@@ -7,19 +7,29 @@ public class ObstacleController : MonoBehaviour {
     [Tooltip("Velocidade do deslocamento")]
     [Range(0.001f,0.5f)]
     [SerializeField]
-    public float speed = 0.1f;
+    float speed = 0.1f;
 
     [Tooltip("Delay entre as inversões de movimento")]
     [Range(0, 5)]
     [SerializeField]
-    public float delay = 0.3f;
+    float delay = 0.3f;
 
     [Tooltip("Eixo de deslocamento 1=X, 2=Y e 3=Z")]
     [Range(1, 3)]
     [SerializeField]
-    public int axis = 1;
+    int axis = 1;
+
+    [Tooltip("Reproduzir áudio com movimento")] 
+    [SerializeField]
+    bool sound = false;
 
     private float speed_backup; //Guarda a velocidade para que seja restaurada
+    private AudioSource audio;
+
+    void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     void OnTriggerExit(Collider other)
     {
@@ -27,13 +37,9 @@ public class ObstacleController : MonoBehaviour {
         {
             speed_backup = speed;
             speed = 0;
+            if (audio.isPlaying) audio.Stop();
             Invoke("revert", delay);
         }
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        print(collision.gameObject.name);
     }
 
     void Update()
@@ -52,6 +58,7 @@ public class ObstacleController : MonoBehaviour {
 
     void revert()
     {
+        if(sound) audio.Play();
         speed = speed_backup;
         speed *= -1;
     }

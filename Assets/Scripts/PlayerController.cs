@@ -22,6 +22,27 @@ public class PlayerController: MonoBehaviour
     Vector3 v = new Vector3(0,3,0); //checkpoint
     Canvas canvas;
 
+    [Header("Sons do Player")]
+    [Tooltip("Som ao pular")]
+    [SerializeField]
+    AudioClip jumpSound;
+
+    [Tooltip("Som ao cair")]
+    [SerializeField]
+    AudioClip fallSound;
+
+    [Tooltip("Som ao ganhar")]
+    [SerializeField]
+    AudioClip winSound;
+
+    [Tooltip("Som ao perder")]
+    [SerializeField]
+    AudioClip loseSound;
+
+    AudioSource audio; //AudioSource to reproduce Audio clips
+
+
+    [Header("Movimentação do Player")]
     [Tooltip("Indica o contato com o chão (Automático)")]
     [SerializeField]
     bool onGround = false;
@@ -36,16 +57,6 @@ public class PlayerController: MonoBehaviour
     [Range(1, 50)]
     [SerializeField]
     float velocidadeRolamento = 10.0f;
-
-    [Header("Membros responsáveis pelo swipe")]
-    [Tooltip("Variável para determinar a distância mínima de swipe")]
-    [SerializeField]
-    float minDisSwipe = 200.0f;
-
-    [Tooltip("Variável para determinar amplitude do swipe")]
-    [SerializeField]
-    float swipeMove = 2.0f;
-
 
     public void setVelocidadeRolamento(float velocidade)
     {
@@ -65,6 +76,7 @@ public class PlayerController: MonoBehaviour
         rb = GetComponent<Rigidbody>();
         heightLifeBar = lifeBar.rectTransform.rect.height;
         widthLifeBar = lifeBar.rectTransform.rect.width;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -83,6 +95,8 @@ public class PlayerController: MonoBehaviour
 
         if (currentLife == 0)
         {
+            Camera.main.GetComponent<AudioSource>().Stop();
+            if(!audio.isPlaying) audio.PlayOneShot(loseSound);
             Time.timeScale = 0;
             canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
         }
@@ -144,6 +158,7 @@ public class PlayerController: MonoBehaviour
             rb.AddForce(camera_sideDir * Time.deltaTime * constante);
 
             if (Input.GetKeyDown("space")) {
+                if(!audio.isPlaying) audio.PlayOneShot(jumpSound);
                 rb.AddForce(0, 300, 0);
             }
         }
@@ -170,7 +185,9 @@ public class PlayerController: MonoBehaviour
     {
         if (other.gameObject.tag == "TheEnd")
         {
+            audio.PlayOneShot(winSound);
             Time.timeScale = 0;
+            rb.isKinematic = true;
             canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
         }
     }
@@ -184,10 +201,11 @@ public class PlayerController: MonoBehaviour
             onGround = false;
         }
         if(otherExit.gameObject.tag == "GameOver")
-        {           
-            rb.transform.position = v;
-            rb.isKinematic = true;
-            Invoke("Restart", 0.1f);
+        {
+            AudioSource.PlayClipAtPoint(fallSound, Camera.main.transform.position);
+            gameObject.SetActive(false);
+            Invoke("SetLastLocation", 3f);
+
             currentLife--;
             //Calculo para redimencionar a barra de vida
             lifeBar.rectTransform.sizeDelta = new Vector2(currentLife * widthLifeBar / maximumLife, heightLifeBar);
@@ -205,8 +223,16 @@ public class PlayerController: MonoBehaviour
         v = new Vector3(v.x, v.y + 1, v.z);
     }
 
+    private void SetLastLocation()
+    {
+        rb.isKinematic = true;
+        Invoke("Restart", 0.1f);
+    }
+
     private void Restart()
     {
+        gameObject.SetActive(true);
+        rb.transform.position = v;
         rb.isKinematic = false;
     }
 
