@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController: MonoBehaviour
@@ -24,6 +25,12 @@ public class PlayerController: MonoBehaviour
     [Tooltip("Indica o contato com o chão (Automático)")]
     [SerializeField]
     bool onGround = false;
+
+    public Image lifeBar;
+    float widthLifeBar;
+    float heightLifeBar;
+    public int maximumLife = 10;
+    public int currentLife;
 
     [Tooltip("A velocidade de deslocamento frontal")]
     [Range(1, 50)]
@@ -53,8 +60,11 @@ public class PlayerController: MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentLife = maximumLife;
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         rb = GetComponent<Rigidbody>();
+        heightLifeBar = lifeBar.rectTransform.rect.height;
+        widthLifeBar = lifeBar.rectTransform.rect.width;
     }
 
     // Update is called once per frame
@@ -62,8 +72,20 @@ public class PlayerController: MonoBehaviour
     {
         //Se o jogo estiver pausado nao faça nada
         if (PauseMenu.pause)
+        {
+            Time.timeScale = 0;
             return;
-        
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+        if (currentLife == 0)
+        {
+            Time.timeScale = 0;
+            canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
+        }
         var direcaoHorizontal = 0.0f;
         var direcaoVertical = 0.0f;
 
@@ -148,6 +170,7 @@ public class PlayerController: MonoBehaviour
     {
         if (other.gameObject.tag == "TheEnd")
         {
+            Time.timeScale = 0;
             canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
         }
     }
@@ -161,12 +184,19 @@ public class PlayerController: MonoBehaviour
             onGround = false;
         }
         if(otherExit.gameObject.tag == "GameOver")
-        {
+        {           
             rb.transform.position = v;
             rb.isKinematic = true;
             Invoke("Restart", 0.1f);
+            currentLife--;
+            //Calculo para redimencionar a barra de vida
+            lifeBar.rectTransform.sizeDelta = new Vector2(currentLife * widthLifeBar / maximumLife, heightLifeBar);
+            //Alterando cor critica (30%) da barra de vida
+            if ( lifeBar.rectTransform.rect.width * 100 / widthLifeBar <= 30)
+            {
+                lifeBar.color = Color.red;
+            }
         }
-
     }
 
     public void Checkpoint()

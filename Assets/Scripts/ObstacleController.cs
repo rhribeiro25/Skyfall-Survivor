@@ -38,6 +38,9 @@ public class ObstacleController : MonoBehaviour {
 
     void Update()
     {
+        if (Time.timeScale == 0)
+            return;
+
         Vector3 v = transform.position;
 
         if (axis == 1) v.x += speed;

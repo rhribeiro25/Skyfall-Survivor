@@ -8,6 +8,8 @@ TagManager:
   - Bridge
   - GameOver
   - TheEnd
+  - CheckPoint
+  - Start
   layers:
   - Default
   - TransparentFX
