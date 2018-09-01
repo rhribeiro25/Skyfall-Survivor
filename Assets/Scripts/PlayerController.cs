@@ -11,16 +11,20 @@ public class PlayerController: MonoBehaviour
     public enum TipoMovimentoHorizontal { acelerometro, touch }
 
     public TipoMovimentoHorizontal movimentoHorizontal = TipoMovimentoHorizontal.touch;
+   
+    Rigidbody rb;                               //Referencia para a variavel rigidbody
+    float widthLifeBar;                         //Tamanho inicial da barra de vida
+    float heightLifeBar;                        //Altura inicial da barra de vida
+    public int maximumLife = 10;                //Vida maxima do jogador
+    public int currentLife;                     //Vida atual do jogador
+    Vector3 touchInicio;                        //
+    Vector3 v = new Vector3(0.08f, 3f,-6.37f);  //checkpoint
+    Canvas canvas;                              //Canvas da sena atual
+    AudioSource audio;                          //AudioSource to reproduce Audio clips
 
-
-    /// <summary>
-    /// Referencia para a variavel rigidbody
-    /// </summary>
-    Rigidbody rb;
-
-    Vector3 touchInicio;
-    Vector3 v = new Vector3(0.08f, 3f,-6.37f); //checkpoint
-    Canvas canvas;
+    [Tooltip("Imagem para a barra de vida")]
+    [SerializeField]
+    Image lifeBar;
 
     [Header("Sons do Player")]
     [Tooltip("Som ao pular")]
@@ -39,34 +43,15 @@ public class PlayerController: MonoBehaviour
     [SerializeField]
     AudioClip loseSound;
 
-    AudioSource audio; //AudioSource to reproduce Audio clips
-
-
     [Header("Movimentação do Player")]
     [Tooltip("Indica o contato com o chão (Automático)")]
     [SerializeField]
     bool onGround = false;
 
-    public Image lifeBar;
-    float widthLifeBar;
-    float heightLifeBar;
-    public int maximumLife = 10;
-    public int currentLife;
-
     [Tooltip("A velocidade de deslocamento frontal")]
     [Range(1, 50)]
     [SerializeField]
     float velocidadeRolamento = 10.0f;
-
-    public void setVelocidadeRolamento(float velocidade)
-    {
-        this.velocidadeRolamento = velocidade;
-    }
-
-    public float getVelocidadeRolamento()
-    {
-        return this.velocidadeRolamento;
-    }
 
     // Use this for initialization
     void Start()
@@ -83,7 +68,7 @@ public class PlayerController: MonoBehaviour
     void Update()
     {
         //Se o jogo estiver pausado nao faça nada
-        if (MenuPause.onPause)
+        if (PauseMenu.onPause)
         {
             return;
         }
@@ -158,6 +143,10 @@ public class PlayerController: MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Metodo chamado na colisao da bolinha
+    /// </summary>
+    /// <param name="other"></param>
     void OnCollisionStay(Collision other)
     {
         //checks to make sure the collision we collided with is the ground.
@@ -168,6 +157,10 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo chamado quando a bolinha ultrapassa o trigger da platafomrma (queda)
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "TheEnd")
@@ -177,10 +170,14 @@ public class PlayerController: MonoBehaviour
         if (other.gameObject.tag == "GameOver")
         {
             AudioSource.PlayClipAtPoint(fallSound, Camera.main.transform.position);
-            Invoke("SetLastLocation", 5f);
+            Invoke("SetLastLocation", 2f);
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="otherExit"></param>
     void OnCollisionExit(Collision otherExit)
     {
 
@@ -191,6 +188,9 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void Checkpoint()
     {
         v = transform.position;
@@ -205,12 +205,18 @@ public class PlayerController: MonoBehaviour
         Invoke("Restart", 0.1f);
     }
 
+    /// <summary>
+    /// Controla o ciclo de vida do jogador
+    /// </summary>
     private void LifeController()
     {
         currentLife--;
         BarControl();
     }
 
+    /// <summary>
+    /// Consede metade da vida total ao jogador ao reviver (Após ver o anuncio)
+    /// </summary>
     private void Restart()
     {
         if (currentLife == 0) currentLife = maximumLife/2;
@@ -220,6 +226,9 @@ public class PlayerController: MonoBehaviour
         rb.isKinematic = false;
     }
 
+    /// <summary>
+    /// Controla as cores da barra de vida, sendo vermelho <= 30% e verde > 70%
+    /// </summary>
     private void BarControl()
     {
         //Calculo para redimencionar a barra de vida
@@ -239,6 +248,10 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="posicaoClick"></param>
     static void touchObject(Vector3 posicaoClick)
     {
         Ray cliqueRay = Camera.main.ScreenPointToRay(posicaoClick);
@@ -264,21 +277,40 @@ public class PlayerController: MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    /// <summary>
+    /// Metodo chamado ao atingir 0 de vida
+    /// </summary>
     void GameOver()
     {
         Time.timeScale = 0;
         Camera.main.GetComponent<AudioSource>().Stop();
         if (!audio.isPlaying)
             audio.PlayOneShot(loseSound);
-        MenuPause.onPause = true;
+        PauseMenu.onPause = true;
         canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
+        canvas.transform.Find("ButtonPause").gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Metodo chamado ao chegar na etapa final da fase
+    /// </summary>
     void YouWin()
     {
         audio.PlayOneShot(winSound);
-        MenuPause.onPause = true;
+        PauseMenu.onPause = true;
         rb.isKinematic = true;
         canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
+        canvas.transform.Find("ButtonPause").gameObject.SetActive(false);
+    }
+
+    //Getters e Setters
+    public void setVelocidadeRolamento(float velocidade)
+    {
+        this.velocidadeRolamento = velocidade;
+    }
+
+    public float getVelocidadeRolamento()
+    {
+        return this.velocidadeRolamento;
     }
 }

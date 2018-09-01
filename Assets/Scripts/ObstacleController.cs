@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour {
 
+    private float speed_backup; //Guarda a velocidade para que seja restaurada
+    private AudioSource audio;
+
     [Tooltip("Velocidade do deslocamento")]
     [Range(0.001f,0.5f)]
     [SerializeField]
@@ -23,14 +26,16 @@ public class ObstacleController : MonoBehaviour {
     [SerializeField]
     bool sound = false;
 
-    private float speed_backup; //Guarda a velocidade para que seja restaurada
-    private AudioSource audio;
-
+    // Use this for initialization
     void Start()
     {
         audio = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerExit(Collider other)
     {
         if(other.tag == "Ground")
@@ -42,9 +47,10 @@ public class ObstacleController : MonoBehaviour {
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0)
+        if (PauseMenu.onPause)
             return;
 
         Vector3 v = transform.position;

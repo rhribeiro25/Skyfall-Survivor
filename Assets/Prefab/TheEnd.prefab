@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4034519789997792}
   - component: {fileID: 33787437916013882}
   - component: {fileID: 23331007691614646}
-  - component: {fileID: 114118619899286798}
   - component: {fileID: 135691997224124950}
   m_Layer: 0
   m_Name: TheEnd
@@ -116,18 +115,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720688162146964}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114118619899286798
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1720688162146964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87208fd573f85b42bc0101a34edfe3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particles: {fileID: 198972900421794492}
 --- !u!135 &135691997224124950
 SphereCollider:
   m_ObjectHideFlags: 1

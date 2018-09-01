@@ -16,6 +16,10 @@ public class BoostController : MonoBehaviour {
 		
 	}
 
+    /// <summary>
+    /// Metodo responsável por aumentar a velocidade de rolamento
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")

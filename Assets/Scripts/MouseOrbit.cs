@@ -59,6 +59,9 @@ public class MouseOrbit : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void LateUpdate()
     {
         if (target)
@@ -85,6 +88,13 @@ public class MouseOrbit : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
     public static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360F)

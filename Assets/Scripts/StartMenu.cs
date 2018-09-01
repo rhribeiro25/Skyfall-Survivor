@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour {
 
-    public void carregaScene(string sceneName)
+    /// <summary>
+    /// Metodo para carregar uma scene
+    /// </summary>
+    /// <param name="sceneName"></param>
+    public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }

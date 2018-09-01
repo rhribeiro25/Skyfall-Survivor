@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour {
 
+
+    bool got = false;   //
+    AudioSource audio;  //
+
     [Tooltip("Sistema de particulas do Checkpoint (Child)")]
     [SerializeField]
     ParticleSystem particles;
 
-    bool got = false;
-
-    AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
         audio = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {

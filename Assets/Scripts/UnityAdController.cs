@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
 #if UNITY_ADS
 using UnityEngine.Advertisements;
 #endif
@@ -11,6 +10,9 @@ public class UnityAdController : MonoBehaviour {
 
     public static bool showAds = true;
 
+    /// <summary>
+    /// Metodo responsável por exibir a tela de anuncios
+    /// </summary>
     public static void ShowAd()
     {
 
@@ -21,7 +23,7 @@ public class UnityAdController : MonoBehaviour {
         if(Advertisement.IsReady()){
             Advertisement.Show(opcoes);
 
-            MenuPause.onPause = true;
+            PauseMenu.onPause = true;
             Time.timeScale = 0;
         }
 #endif
@@ -32,10 +34,10 @@ public class UnityAdController : MonoBehaviour {
     {
         if(ShowResult.Skipped == result){
             Time.timeScale = 1;
-            MenuPause.onPause = false;
+            PauseMenu.onPause = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }else{
-            MenuPause.onPause = false;
+            PauseMenu.onPause = false;
             Time.timeScale = 1;
         }
     }
