@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-#if UNITY_ADS
-using UnityEngine.Advertisements;
-#endif
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController: MonoBehaviour
@@ -22,7 +19,7 @@ public class PlayerController: MonoBehaviour
     Rigidbody rb;
 
     Vector3 touchInicio;
-    Vector3 v = new Vector3(0,3,0); //checkpoint
+    Vector3 v = new Vector3(0.08f, 3f,-6.37f); //checkpoint
     Canvas canvas;
 
     [Header("Sons do Player")]
@@ -86,20 +83,11 @@ public class PlayerController: MonoBehaviour
     void Update()
     {
         //Se o jogo estiver pausado nao faça nada
-        if (PauseMenu.pause)
+        if (MenuPause.onPause)
         {
-            Time.timeScale = 0;
             return;
         }
-        else
-        {
-            Time.timeScale = 1;
-        }
 
-        if (currentLife == 0)
-        {
-            GameOver();            
-        }
         var direcaoHorizontal = 0.0f;
         var direcaoVertical = 0.0f;
 
@@ -186,6 +174,11 @@ public class PlayerController: MonoBehaviour
         {
             YouWin();
         }
+        if (other.gameObject.tag == "GameOver")
+        {
+            AudioSource.PlayClipAtPoint(fallSound, Camera.main.transform.position);
+            Invoke("SetLastLocation", 5f);
+        }
     }
 
     void OnCollisionExit(Collision otherExit)
@@ -195,21 +188,6 @@ public class PlayerController: MonoBehaviour
         if (otherExit.gameObject.tag == "Ground")
         {
             onGround = false;
-        }
-        if(otherExit.gameObject.tag == "GameOver")
-        {
-            AudioSource.PlayClipAtPoint(fallSound, Camera.main.transform.position);
-            gameObject.SetActive(false);
-            Invoke("SetLastLocation", 3f);
-
-            currentLife--;
-            //Calculo para redimencionar a barra de vida
-            lifeBar.rectTransform.sizeDelta = new Vector2(currentLife * widthLifeBar / maximumLife, heightLifeBar);
-            //Alterando cor critica (30%) da barra de vida
-            if ( lifeBar.rectTransform.rect.width * 100 / widthLifeBar <= 30)
-            {
-                lifeBar.color = Color.red;
-            }
         }
     }
 
@@ -221,15 +199,44 @@ public class PlayerController: MonoBehaviour
 
     private void SetLastLocation()
     {
+        LifeController();
+        
         rb.isKinematic = true;
         Invoke("Restart", 0.1f);
     }
 
+    private void LifeController()
+    {
+        currentLife--;
+        BarControl();
+    }
+
     private void Restart()
     {
+        if (currentLife == 0) currentLife = maximumLife/2;
+        BarControl();
         gameObject.SetActive(true);
         rb.transform.position = v;
         rb.isKinematic = false;
+    }
+
+    private void BarControl()
+    {
+        //Calculo para redimencionar a barra de vida
+        lifeBar.rectTransform.sizeDelta = new Vector2(currentLife * widthLifeBar / maximumLife, heightLifeBar);
+        //Alterando cor critica (30%) da barra de vida
+        if (lifeBar.rectTransform.rect.width * 100 / widthLifeBar <= 30)
+        {
+            lifeBar.color = Color.red;
+        }
+        else
+        {
+            lifeBar.color = Color.green;
+        }
+        if (currentLife == 0)
+        {
+            GameOver();
+        }
     }
 
     static void touchObject(Vector3 posicaoClick)
@@ -257,29 +264,20 @@ public class PlayerController: MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ShowAds()
-    {
-    #if UNITY_ADS
-                if (UnityAdControle.showAds)
-                {
-                    UnityAdControle.ShowAd();
-                }
-    #endif
-    }
-
     void GameOver()
     {
+        Time.timeScale = 0;
         Camera.main.GetComponent<AudioSource>().Stop();
         if (!audio.isPlaying)
             audio.PlayOneShot(loseSound);
-        PauseMenu.pause = true;
+        MenuPause.onPause = true;
         canvas.transform.Find("GameOverPanel").gameObject.SetActive(true);
     }
 
     void YouWin()
     {
         audio.PlayOneShot(winSound);
-        PauseMenu.pause = true;
+        MenuPause.onPause = true;
         rb.isKinematic = true;
         canvas.transform.Find("YouWinPanel").gameObject.SetActive(true);
     }
