@@ -5,8 +5,8 @@ using UnityEngine;
 public class CheckpointController : MonoBehaviour {
 
 
-    bool got = false;   //
-    AudioSource audio;  //
+    bool got = false;   //bool que indica se o check já foi pego (para nao tocar o som varias vezes)
+    AudioSource audio;  //audioSource do objeto
 
     [Tooltip("Sistema de particulas do Checkpoint (Child)")]
     [SerializeField]
@@ -19,16 +19,18 @@ public class CheckpointController : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Controla a passagem da bolinha pelo checkpoint
     /// </summary>
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
-            other.SendMessage("Checkpoint", SendMessageOptions.DontRequireReceiver);
-            if(!audio.isPlaying && !got) audio.Play();
+            other.SendMessage("Checkpoint", SendMessageOptions.DontRequireReceiver); //Manda msg para a bolinha para salvar a posição
+            if(!audio.isPlaying && !got) audio.Play(); //Toca o audio de checkpoint
+
+            //Altera a aparencia do checkpoint
             ParticleSystem.MainModule p_module = particles.main; //Warning - particles.startColor is deprecated
-            p_module.startLifetime = 0.5f;
+            p_module.startLifetime = 0.5f; 
             Color g = Color.gray;
             g.a = 0.5f;
             p_module.startColor = g;

@@ -17,8 +17,7 @@ public class PlayerController: MonoBehaviour
     float heightLifeBar;                        //Altura inicial da barra de vida
     public int maximumLife = 10;                //Vida maxima do jogador
     public int currentLife;                     //Vida atual do jogador
-    Vector3 touchInicio;                        //
-    Vector3 v = new Vector3(0.08f, 3f,-6.37f);  //checkpoint
+    Vector3 v = new Vector3(0.08f, 3f,-6.37f);  //Posição da bola atualizada a cada checkpoint
     Canvas canvas;                              //Canvas da sena atual
     AudioSource audio;                          //AudioSource to reproduce Audio clips
 
@@ -30,6 +29,10 @@ public class PlayerController: MonoBehaviour
     [Tooltip("Som ao pular")]
     [SerializeField]
     AudioClip jumpSound;
+
+    [Tooltip("Som ao derrubar ponte")]
+    [SerializeField]
+    AudioClip bridgeSound;
 
     [Tooltip("Som ao cair")]
     [SerializeField]
@@ -73,7 +76,7 @@ public class PlayerController: MonoBehaviour
             return;
         }
 
-        var direcaoHorizontal = 0.0f;
+        var direcaoHorizontal = 0.0f; //Inicialização
         var direcaoVertical = 0.0f;
 
         //#if UNITY_STANDALONE
@@ -81,6 +84,7 @@ public class PlayerController: MonoBehaviour
         /* Teclado */
         direcaoHorizontal = Input.GetAxis("Horizontal");
         direcaoVertical = Input.GetAxis("Vertical");
+        // Pega a referencia da direção da camera (para que WASD funcione independente da posição da mesma)
         Vector3 camera_frontDir = Camera.main.transform.forward;
         Vector3 camera_sideDir = Camera.main.transform.right;
 
@@ -97,7 +101,7 @@ public class PlayerController: MonoBehaviour
         {
             direcaoHorizontal = Input.acceleration.x;
         }
-        else /* Touch */
+        else /* Touch */ //Não utilizado, mas deixado para futuras implementações
         {
             if (Input.touchCount > 0)
             {
@@ -117,18 +121,22 @@ public class PlayerController: MonoBehaviour
         }
         //#endif
 
+        //Normalização dos vetores de camera
         camera_frontDir.Normalize();
         camera_sideDir.Normalize();
 
+        //Calculo das forças horizontal e vertical
         camera_frontDir = new Vector3(camera_frontDir.x * velocidadeRolamento * direcaoVertical, 0, velocidadeRolamento * direcaoVertical * camera_frontDir.z);
         camera_sideDir = new Vector3(camera_sideDir.x * velocidadeRolamento * direcaoHorizontal, 0, velocidadeRolamento * camera_sideDir.z * direcaoHorizontal);
 
         if (onGround == true){ //No chão, o movimento ocorre normalmente
             float constante = 20f;
 
+            //Aplicação das forças
             rb.AddForce(camera_frontDir * Time.deltaTime * constante);
             rb.AddForce(camera_sideDir * Time.deltaTime * constante);
 
+            //APlicação da força para cima (pulo)
             if (Input.GetKeyDown("space")) {
                 if(!audio.isPlaying) audio.PlayOneShot(jumpSound);
                 rb.AddForce(0, 300, 0);
@@ -137,6 +145,7 @@ public class PlayerController: MonoBehaviour
         else{ //No ar, o movimento é complicado, portanto torna-se reduzido
             float constante = 10f;
 
+            //Aplicação de força enquanto no ar
             rb.AddForce(camera_frontDir * Time.deltaTime * constante);
             rb.AddForce(camera_sideDir * Time.deltaTime * constante);
         }
@@ -149,8 +158,7 @@ public class PlayerController: MonoBehaviour
     /// <param name="other"></param>
     void OnCollisionStay(Collision other)
     {
-        //checks to make sure the collision we collided with is the ground.
-        //You will need to tag the terrain as ground
+        //Caso em colisão com o chão
         if (other.gameObject.tag == "Ground")
         {
             onGround = true;
@@ -165,12 +173,12 @@ public class PlayerController: MonoBehaviour
     {
         if (other.gameObject.tag == "TheEnd")
         {
-            YouWin();
+            YouWin(); //Caso vença
         }
-        if (other.gameObject.tag == "GameOver")
+        if (other.gameObject.tag == "GameOver") //Caso passe pelo limite inferior da fase = caiu da plataforma
         {
             AudioSource.PlayClipAtPoint(fallSound, Camera.main.transform.position);
-            Invoke("SetLastLocation", 2f);
+            Invoke("SetLastLocation", fallSound.length); //Delay coerente com o tempo do audio
         }
     }
 
@@ -181,7 +189,7 @@ public class PlayerController: MonoBehaviour
     void OnCollisionExit(Collision otherExit)
     {
 
-        //checks to make sure the collision we are no longer colliding with is the ground
+        //Se estiver pulando, não estará em contato com o chão
         if (otherExit.gameObject.tag == "Ground")
         {
             onGround = false;
@@ -189,7 +197,7 @@ public class PlayerController: MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Função chamada para salvar a posição da bola ao passar por um checkpoint
     /// </summary>
     public void Checkpoint()
     {
@@ -197,6 +205,9 @@ public class PlayerController: MonoBehaviour
         v = new Vector3(v.x, v.y + 1, v.z);
     }
 
+    /// <summary>
+    /// Seta o local da bola após queda
+    /// </summary>
     private void SetLastLocation()
     {
         LifeController();
@@ -238,21 +249,21 @@ public class PlayerController: MonoBehaviour
         {
             lifeBar.color = Color.red;
         }
-        else
+        else //Garante a cor verde caso a barra seja maior de 30%
         {
             lifeBar.color = Color.green;
         }
-        if (currentLife == 0)
+        if (currentLife == 0) //Se não tiver mais vidas = Game Over
         {
             GameOver();
         }
     }
 
     /// <summary>
-    /// 
+    ///  Controla o toque sobre os objetos de ponte
     /// </summary>
     /// <param name="posicaoClick"></param>
-    static void touchObject(Vector3 posicaoClick)
+    private void touchObject(Vector3 posicaoClick)
     {
         Ray cliqueRay = Camera.main.ScreenPointToRay(posicaoClick);
 
@@ -262,9 +273,8 @@ public class PlayerController: MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Bridge")
             {
+                audio.PlayOneShot(bridgeSound);
                 hit.rigidbody.isKinematic = false;
-               //hit.transform.SendMessage("ObjetoTocado", SendMessageOptions.DontRequireReceiver);
-               //Destroy(hit.transform.gameObject); //Destroi outro objeto
             }
         }
     }

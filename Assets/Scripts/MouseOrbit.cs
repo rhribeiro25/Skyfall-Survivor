@@ -40,8 +40,8 @@ public class MouseOrbit : MonoBehaviour {
 
     private Rigidbody rigidbody;
     float distance = 4.0f; //Distância para o alvo
-    float x = 0.0f;
-    float y = 0.0f;
+    float x = 0.0f; //inicialização
+    float y = 0.0f; //inicialização
 
     // Use this for initialization
     void Start()
@@ -60,7 +60,7 @@ public class MouseOrbit : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Atualiza a posição da camera de acordo com as coordenadas do mouse
     /// </summary>
     void LateUpdate()
     {
@@ -89,7 +89,7 @@ public class MouseOrbit : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    ///  Responsavel por limitar os angulos
     /// </summary>
     /// <param name="angle"></param>
     /// <param name="min"></param>

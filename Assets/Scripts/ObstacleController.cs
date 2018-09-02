@@ -33,7 +33,7 @@ public class ObstacleController : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Contola o movimento do obstaculo para que não saia da plataforma em que esta
     /// </summary>
     /// <param name="other"></param>
     void OnTriggerExit(Collider other)
@@ -55,13 +55,18 @@ public class ObstacleController : MonoBehaviour {
 
         Vector3 v = transform.position;
 
+        //Aplica velocidade dependendo do eixo
         if (axis == 1) v.x += speed;
         else if (axis == 2) v.y += speed;
         else if (axis == 3) v.z += speed;
 
+        //Movimenta
         transform.position = v;
     }
 
+    /// <summary>
+    /// Inverte a movimentação - Vai e volta
+    /// </summary>
     void revert()
     {
         if(sound) audio.Play();

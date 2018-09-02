@@ -28,11 +28,14 @@ public class BoostController : MonoBehaviour {
             if (player.getVelocidadeRolamento() == 10f)
             { //Está na velocidade padrão, aplique o boost
                 other.GetComponent<PlayerController>().setVelocidadeRolamento(20f);
-                Invoke("ResetSpeed", 3);
+                Invoke("ResetSpeed", 3); //Após 3 segundos reseta
             }
         }
     }
 
+    /// <summary>
+    /// Metodo responsável por restaurar a velocidade de rolamento (após 3s)
+    /// </summary>
     private void ResetSpeed()
     {
         player.setVelocidadeRolamento(10f);

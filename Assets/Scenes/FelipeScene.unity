@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2210,7 +2210,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 404676423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 25.3}
+  m_LocalPosition: {x: 0, y: -5.8, z: 25.3}
   m_LocalScale: {x: 99.4831, y: 1, z: 119.06661}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3666,7 +3666,8 @@ MonoBehaviour:
   currentLife: 0
   lifeBar: {fileID: 1303656981}
   jumpSound: {fileID: 8300000, guid: 4c7ebec5655f27d4a8ea1ef5b5d4a012, type: 3}
-  fallSound: {fileID: 8300000, guid: 2112d1068a8577a44aaf1f99d5f3929a, type: 3}
+  bridgeSound: {fileID: 8300000, guid: 61fcf89ee4a77624fa2b756b71f462ae, type: 3}
+  fallSound: {fileID: 8300000, guid: 0d83a955c01e0fa4f888d591754e2484, type: 3}
   winSound: {fileID: 8300000, guid: 6583449b0ca79fc4392f31394118f9f2, type: 3}
   loseSound: {fileID: 8300000, guid: 1bf4437f7bbba4541ae74d644747c221, type: 3}
   onGround: 0
